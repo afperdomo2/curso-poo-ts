@@ -1,8 +1,3 @@
-// Ejemplo de instancia de clases, usando la clase Date
-const date = new Date();
-date.getHours();
-console.info('date:', date);
-
 export class MyDate {
   year: number;
   month: number;
@@ -13,7 +8,21 @@ export class MyDate {
     this.month = month;
     this.day = day;
   }
+
+  printFormat(): string {
+    return `${this.day}/${this.month}/${this.year}`;
+  }
+
+  add(amount: number, type: 'days' | 'months' | 'years') {
+    if (type === 'days') this.day += amount;
+    if (type === 'months') this.month += amount;
+    if (type === 'years') this.year += amount;
+  }
 }
 
 const myDate = new MyDate(2023, 11, 9);
-console.info('myDate:', myDate);
+console.info('printFormat:', myDate.printFormat());
+myDate.add(2, 'days');
+console.info('printFormat:', myDate.printFormat());
+myDate.add(10, 'years');
+console.info('printFormat:', myDate.printFormat());
