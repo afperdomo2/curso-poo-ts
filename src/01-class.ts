@@ -1,13 +1,9 @@
 export class MyDate {
-  private year: number;
-  private month: number;
-  private day: number;
-
-  constructor(year: number, month: number, day: number) {
-    this.year = year;
-    this.month = month;
-    this.day = day;
-  }
+  constructor(
+    private year: number = 1900,
+    private month: number = 1,
+    private day: number = 1
+  ) {}
 
   private addPadding(value: number): string {
     return value < 10 ? `0${value}` : `${value}`;
@@ -38,9 +34,12 @@ export class MyDate {
   }
 }
 
+const voidDate = new MyDate();
+console.info('voidDate - printFormat:', voidDate.printFormat());
+
 const myDate = new MyDate(2023, 2, 9);
-console.info('printFormat:', myDate.printFormat());
+console.info('myDate - printFormat:', myDate.printFormat());
 myDate.add(2, 'days');
-console.info('printFormat:', myDate.printFormat());
+console.info('myDate - printFormat:', myDate.printFormat());
 myDate.add(10, 'years');
-console.info('printFormat:', myDate.printFormat());
+console.info('myDate - printFormat:', myDate.printFormat());
