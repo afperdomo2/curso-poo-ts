@@ -21,6 +21,21 @@ export class MyDate {
     if (type === 'years') this._year += amount;
   }
 
+  set day(day: number) {
+    this._day = day;
+  }
+
+  set month(month: number) {
+    if (month < 1 || month > 12) {
+      throw new Error('Month out of range (1-12)');
+    }
+    this._month = month;
+  }
+
+  set year(year: number) {
+    this._year = year;
+  }
+
   get isHoliday(): boolean {
     return true;
   }
@@ -61,3 +76,13 @@ console.info('year:', myDate.year);
 
 console.info('isHoliday:', myDate.isHoliday);
 console.info('isLeapYear:', myDate.isLeapYear);
+
+const myDate2 = new MyDate(1900, 12, 3);
+console.info('\nprintFormat:', myDate2.printFormat());
+myDate2.day = 27;
+myDate2.month = 1;
+myDate2.year = 666;
+console.info('printFormat:', myDate2.printFormat());
+
+// Esto genera un error porque no existe el mes 13
+// myDate2.month = 20;
