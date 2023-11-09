@@ -1,8 +1,8 @@
 export class MyDate {
   constructor(
-    private year: number = 1900,
-    private month: number = 1,
-    private day: number = 1
+    private _year: number = 2000,
+    private _month: number = 1,
+    private _day: number = 1
   ) {}
 
   private addPadding(value: number): string {
@@ -10,36 +10,54 @@ export class MyDate {
   }
 
   printFormat(): string {
-    const day = this.addPadding(this.day);
-    const month = this.addPadding(this.month);
-    return `${day}/${month}/${this.year}`;
+    const day = this.addPadding(this._day);
+    const month = this.addPadding(this._month);
+    return `${day}/${month}/${this._year}`;
   }
 
   add(amount: number, type: 'days' | 'months' | 'years') {
-    if (type === 'days') this.day += amount;
-    if (type === 'months') this.month += amount;
-    if (type === 'years') this.year += amount;
+    if (type === 'days') this._day += amount;
+    if (type === 'months') this._month += amount;
+    if (type === 'years') this._year += amount;
   }
 
-  getDay() {
-    return this.day;
+  get isHoliday(): boolean {
+    return true;
   }
 
-  getMonth() {
-    return this.month;
+  get isLeapYear(): boolean {
+    if (this._year % 400 === 0) return true;
+    if (this._year % 100 === 0) return false;
+    return this._year % 4 === 0;
   }
 
-  getYear() {
-    return this.year;
+  get day() {
+    return this._day;
+  }
+
+  get month() {
+    return this._month;
+  }
+
+  get year() {
+    return this._year;
   }
 }
 
 const voidDate = new MyDate();
-console.info('voidDate - printFormat:', voidDate.printFormat());
+console.info('printFormat:', voidDate.printFormat());
+console.info('isLeapYear:', voidDate.isLeapYear);
 
 const myDate = new MyDate(2023, 2, 9);
-console.info('myDate - printFormat:', myDate.printFormat());
+console.info('\nprintFormat:', myDate.printFormat());
 myDate.add(2, 'days');
-console.info('myDate - printFormat:', myDate.printFormat());
+console.info('printFormat:', myDate.printFormat());
 myDate.add(10, 'years');
-console.info('myDate - printFormat:', myDate.printFormat());
+console.info('printFormat:', myDate.printFormat());
+
+console.info('day:', myDate.day);
+console.info('month:', myDate.month);
+console.info('year:', myDate.year);
+
+console.info('isHoliday:', myDate.isHoliday);
+console.info('isLeapYear:', myDate.isLeapYear);
