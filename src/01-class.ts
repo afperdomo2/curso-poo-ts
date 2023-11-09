@@ -3,7 +3,7 @@ const date = new Date();
 date.getHours();
 console.info('date:', date);
 
-class MyDate {
+export class MyDate {
   year: number;
   month: number;
   day: number;
