@@ -19,7 +19,7 @@ export class ProductMemoryService {
         image: faker.image.url(),
       },
     };
-    this.add(newProduct);
+    return this.add(newProduct);
   }
 
   add(product: Product) {
@@ -39,5 +39,9 @@ export class ProductMemoryService {
 
   findOne(id: Product['id']) {
     return this.products.find((product) => product.id === id);
+  }
+
+  findAll() {
+    return this.products;
   }
 }
